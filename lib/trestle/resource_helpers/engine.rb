@@ -1,11 +1,7 @@
 module Trestle
   module ResourceHelpers
     class Engine < Rails::Engine
-      config.assets.precompile << 'trestle/resource_description.css'
-
-      # config.to_prepare do
-      #  Trestle::ResourceController.send(:include, Trestle::ResourceHelpers::ControllerConcern)
-      # end
+      config.assets.precompile << 'trestle/resource_description.css' if defined?(Sprockets)
 
       initializer :extensions do
         Trestle::Resource.send(:include, Trestle::ResourceHelpers::Resource)
